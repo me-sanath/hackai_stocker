@@ -1,8 +1,17 @@
 import smtplib
+import time
 import requests
 from uagents import Agent, Model, Context, Bureau
 import os
 from dotenv import load_dotenv
+import numpy as np
+import pandas as pd
+import yfinance as yf
+from keras.models import load_model
+import matplotlib.pyplot as plt
+import sys
+from datetime import date, timedelta
+from typing import List, Optional
 
 load_dotenv()
 
@@ -20,19 +29,32 @@ api_url = "http://www.alphavantage.co/query"
 server_address = "http://test/get_data/"
 
 class Request(Model):
+    request_data_type: str
+    message: str
+
+class Response(Model):
+    status: bool
     message: str
 
 # Create a data model for temperature data
 class TemperatureData(Model):
     temperature: float
 
-# Define a data model for user data
+# Data model for company data
+class companyData(Model):
+    companyName: str
+    companyCode: str
+
+# Data model for user data
 class UserData(Model):
-    email: str
+    identifier: str
     next_notify: float
+    company: List[companyData]
 
 # Cache Data
 user_cache = []
+
+users_data = []
 
 # Using proxy to avoid Rate Limiting from APIs
 def get_proxy(use_proxy):
@@ -57,7 +79,22 @@ def get_proxy(use_proxy):
 # Main handlers
 @stocker.on_message(model=Request)
 async def handle_message(ctx: Context, sender: str, msg: Request):
-    ctx.logger.info(f"Received message from {sender}: {msg.message}")
+    if msg.request_data_type =="graph_data":
+        response = get_graph_data(msg.message)
+    if msg.request_data_type =="all_data":
+        company_data = get_company_meta(msg.message)
+        graph_data = get_graph_data(msg.message)
+        response = {
+            "meta":company_data,
+            "graph":graph_data,
+        }
+    if msg.request_data_type =="predict":
+        response = getStockPrice(msg.message)
+        response = {"Advice":response}
+    if response:
+        ctx.send(sender,Response(status=True,message=response))
+    else:
+        ctx.send(sender,Response(status=False,message="Bad Request"))
 
 # User handlers
 @user.on_interval(period=3.0)
@@ -69,11 +106,17 @@ async def send_message(ctx: Context):
 # Notifier handlers
 @notifier.on_interval(period=10.0)
 async def alert_user(ctx: Context):
-    pass
-
+    users = get_all_enabled_user_data(Context)
+    for user in users:
+        temp = get_user_follower(user,Context)
+        if temp != False:
+            users_data.append(temp)
+    for user in users_data:
+        notify_if_required(user,Context)
+            
 # -x-x-x-x-x-x-x-Support Functions-x-x-x-x-x-x-x-x-x-x-x
 
-async def send_email(subject, receiver, message_body):
+async def send_email(subject, receiver, message_body,ctx:Context):
     # Constructs the email message
     sender = "stalker@stocker.com"
     message = f"""\
@@ -83,9 +126,15 @@ From: {sender}
 
 {message_body}
 """
-    with smtplib.SMTP("sandbox.smtp.mailtrap.io", 2525) as server:
-        server.login(sender_email, sender_password)
-        server.sendmail(sender, receiver, message)
+    try:
+        with smtplib.SMTP("sandbox.smtp.mailtrap.io", 2525) as server:
+            server.login(sender_email, sender_password)
+            server.sendmail(sender, receiver, message)
+        return True
+    except Exception as e:
+        ctx.logger(f"Failed to send email {e}")
+        return False
+
 
 def get_symbols(keywords):
     try:
@@ -151,13 +200,13 @@ def get_graph_data(company_code):
             response = response.json()
             if response == None:
                 return
-            return response.get("Time Series (Daily)")   
+            return response.get("Time Series (Daily)")[:7]
     except:
         return 500,None
     
 def get_all_enabled_user_data(ctx:Context):
     try:
-        response = requests.get(server_address+"/get_all_data/")
+        response = requests.get(server_address+"/get_all_data/",headers={"Authorization": "Token " + auth_token})
         if response.status_code == 200:
             users = response.json()
             for user in users:
@@ -172,8 +221,97 @@ def get_all_enabled_user_data(ctx:Context):
     except:
         ctx.logger("Getting Data from storage Failed")
         return None
+    
+def get_user_follower(user: UserData,ctx: Context):
+    try:
+        response = requests.get(server_address+"/stock_subbed/"+user.identifier)
+        if response.status_code == 200:
+            followed = response.json()
+            user.company = None
+            for companies in followed:
+                temp = companyData(
+                    companyName=companies.get("company_name"),
+                    companyCode=companies.get("company_code"),
+                )
+                user.company.append(temp)
+            return user
+        return None   
+    except:
+        ctx.logger("Getting Data from storage Failed")
+        return None
 
+def getStockPrice(stock_symbol):
+    model = load_model('HackAI_Model.keras')
+    today = date.today()
+    yesterday = today - timedelta(days=1)
+    stock = stock_symbol
+    start = '2012-01-01'
+    end = yesterday
+    try:
+        data = yf.download(stock, start ,end)
+        data_train = pd.DataFrame(data.Close[0: int(len(data)*0.80)])
+        data_test = pd.DataFrame(data.Close[int(len(data)*0.80): len(data)])
+        from sklearn.preprocessing import MinMaxScaler
+        scaler = MinMaxScaler(feature_range=(0,1))
+        pas_100_days = data_train.tail(100)
+        data_test = pd.concat([pas_100_days, data_test], ignore_index=True)
+        data_test_scale = scaler.fit_transform(data_test)
+        x = []
+        y = []
+        for i in range(100, data_test_scale.shape[0]):
+            x.append(data_test_scale[i-100:i])
+            y.append(data_test_scale[i,0])
+        x,y = np.array(x), np.array(y)
+        predict = model.predict(x)
+        scale = 1/scaler.scale_
+        predict = predict * scale
+        y = y * scale
+        # fig4 = plt.figure(figsize=(8,6))
+        # plt.plot(predict, 'r', label='Original Price')
+        # plt.plot(y, 'g', label = 'Predicted Price')
+        # plt.xlabel('Time')
+        # plt.ylabel('Price')
+        # plt.show()
+        t = data['Close'][data.shape[0]-1]
+        t2 = t/predict[predict.shape[0]-2]
+        fin = predict[predict.shape[0]-1] * t2
+        # print(fin[0])
+        if(fin[0] > t):
+            # print("Buy the stock")
+            return "Buy the stock"
+        else:
+            # print("Dont buy the stock")
+            return "Dont buy the stock"
+    except:
+        return False
+    
+def update_database(user:UserData,ctx:Context):
+    try:
+        response = requests.get(server_address+"/sent_success/"+user.identifier)
+        if response.status_code == 200:
+            followed = response.json()
+            return True
+        return False   
+    except:
+        ctx.logger("Getting Data from storage Failed")
+        return None
 
+def notify_if_required(user: UserData,ctx: Context):
+    if user.next_notify >= time.time():
+        send_message = ""
+        if user.company:
+            for company in user.company:
+                notification_message = getStockPrice(company.companyCode)
+                if notification_message:
+                    message = f"\n Company Name: {company.companyName}  {notification_message}"
+                send_message += message
+        
+        send_email("Daily Stocker Alert",user.identifier,message_body=send_message,ctx=Context)
+        update_database(user,ctx)
+        ctx.logger(f"Mail sent successfully for {user.identifier}")
+        return True
+    else:
+        pass
 
 
 if __name__ == '__main__':
