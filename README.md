@@ -81,7 +81,7 @@ Feel free to reach out to us if you have trouble following the guide. Contact de
 
 2. **Change Directory**: Switch to the folder in which we have our app.
    ```bash
-      cd client
+      cd stocker
     ```
     
 3. **Create a Virtual Environment**: It's a good practice to work in a virtual environment to manage dependencies cleanly. Create a virtual environment using your preferred method. For example, you can use Python's `virtualenv` or `venv`.
@@ -114,6 +114,22 @@ Feel free to reach out to us if you have trouble following the guide. Contact de
     ```bash
     python manage.py runserver
     ```
+8. **Change Directory**: Open a new terminal and switch to the client directory
+
+     ```bash
+     cd client
+     ```
+9. **Install Dependencies**: Install all the dependencies required for the client part of the website
+
+    ```bash
+    npm i
+    ```
+10. **Run the client side**: Start the website with the given command. This action starts the server locally, and it will be accessible at the specified address (usually `http://localhost:5173/`).
+
+    ```bash
+    npm run dev
+    ```
+    
 
 
 These steps will help you set up and run the server smoothly. You're now ready to go!
