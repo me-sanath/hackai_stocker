@@ -161,3 +161,17 @@ APIs: Leaflet, OpenStreetMap
 ![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/2c0039ca-cdc0-4d7c-8ad9-2039ebd8eafe")
 
 ![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/2c0039ca-cdc0-4d7c-8ad9-2039ebd8eafe")
+
+
+
+
+
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/6ac41386-9527-4050-8866-243363449ad6)
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/ca7955bf-f2a4-465a-b118-bafd26a5fee0)
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/d5c51b0d-4d5e-46fd-beca-3e2bbda43b79)
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/b08a7355-8912-4a20-99d1-e2491d1549ca)
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/a1db05b4-65de-439e-a18d-cee6683a572d)
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/53f2879d-bf38-4806-9ad6-a3e2676333b4)
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/d7a7d5c5-731e-44e2-b9dc-717ac8f142fd)
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/2e2dae44-4b35-43d6-baa8-3e686a706a45)
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/2c4b7a0d-4e0f-412f-85c3-e126cd004094)
