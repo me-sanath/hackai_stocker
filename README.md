@@ -141,28 +141,34 @@ These steps will help you set up and run the server smoothly. You're now ready t
 
 [![Tech](https://skillicons.dev/icons?i=html,css,tailwind,js,python,django)](https://skillicons.dev)
 
-HTML, CSS, TailwindCSS, JavaScript, Python, Django
+ReactJS, TailwindCSS, Python, Django
 
-APIs: Leaflet, OpenStreetMap
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/b785980b-34df-4ea8-ae7c-5e4f3cd2e213)
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/fc644773-c4a8-40ff-8635-98e3262b6ebc)
+
 
 
 ## Screenshots
 
 ![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/bc280d47-894f-47be-a174-356ac32f85dc)
 
-![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/46594c79-b667-41ec-a808-9ee221c66788")
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/579c1b3d-b940-4ae1-807d-b2dd1c4146d7)
 
-![image]("https://github.com/me-sanath/hackai_stocker/assets/119714743/39a98f08-e0e4-4c53-a5e5-fdafa13e4396")
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/a1481845-9fa5-485a-add9-38488aee1c25)
 
-![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/9f8dd6ec-24f1-4be7-bf94-ddf7b0531b90")
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/08279711-b00b-4703-befa-932a72220dbc)
 
-![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/0f366953-7c52-4a2e-9f8a-9ef3c468362d")
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/c3b5f1c7-5a6d-465d-b0e8-f6747aad04ea)
 
-![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/2c0039ca-cdc0-4d7c-8ad9-2039ebd8eafe")
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/18dfdd96-bb41-459f-85ce-f527e0832d7e)
 
-![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/2c0039ca-cdc0-4d7c-8ad9-2039ebd8eafe")
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/c9daeb73-0987-46cc-8671-12bcafbfdfe5)
 
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/beb8928d-a137-4c90-8232-90bffdb3f58d)
 
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/55bc0b71-96e8-4f7b-b13d-2bc15579010e)
+
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/bfae6a3d-f2c7-42ac-ace9-f7282530763f)
 
 
 
