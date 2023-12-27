@@ -10,7 +10,6 @@ const Home = () => {
     const [isTextTyped, setIsTextTyped] = useState(false);
     const navigate = useNavigate();
     const { isAuthenticated } = useAuth();
-    console.log(isAuthenticated);
 
     const handleSearch = () => {
         setIsTextTyped(selectedCompany && selectedCompany.label !== '');
@@ -64,13 +63,13 @@ const Home = () => {
                             setSelectedCompany(selectedOption)
                         }}
                         placeholder="Search for a company"
-                        className={`w-5/6 sm:w-1/2 text-white py-3 px-6 rounded focus:outline-none placeholder:text-white`}
+                        className={`w-5/6 sm:w-1/2 !text-white py-3 px-6 rounded focus:outline-none placeholder:text-white`}
                         styles={{
                             control: (provided) => ({
                                 ...provided,
-                                backgroundColor: 'transparent',
+                                backgroundColor: '#eeeeee',
                                 borderColor: 'white',
-                                color: '#ffffff',
+                                color: '!#ffffff',
                                 width: '20rem', // Adjust the width as needed
                             }),
                             option: (provided, state) => ({

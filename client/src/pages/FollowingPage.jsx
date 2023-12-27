@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { useAuth } from '../authContext';
+import { backendPortURL } from '../constants/constants';
 
 
 const FollowingPage = () => {
@@ -10,6 +11,7 @@ const FollowingPage = () => {
   const [notificationStatus, setNotificationStatus] = useState({});
   const navigate = useNavigate();
   const { isAuthenticated, toggleLogout } = useAuth();
+  const [authenticated, setAuthenticated] = useState([isAuthenticated]);
 
 
   // Fetch user's followed stocks and notification status from backend
@@ -28,6 +30,21 @@ const FollowingPage = () => {
       'AAPL': true,  // Assume the user is notified for Apple Inc.
       'GOOGL': false,  // Assume the user is not notified for Alphabet Inc.
     });
+  }, []);
+
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      try {
+        // Make an API request to your Django endpoint
+        const response = await axios.get(backendPortURL + '/check-authentication/');
+        setAuthenticated(response.data.authenticated);
+      } catch (error) {
+        // Handle errors (e.g., user is not authenticated)
+        setAuthenticated(false);
+      }
+    };
+
+    checkAuthentication();
   }, []);
 
   const handleCompanyNameClick = (stockSymbol) => {

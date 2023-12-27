@@ -22,18 +22,25 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const  data  = await axios.post(backendPortURL + 'api/login/', form);
-        if (data.error) {
-            setMessage(data.error);
-        } else {
-            setForm({});
-            setMessage("Login successful");
-            console.log(data);
-            toggleLogin(data.data.token, data.data.user_id, data.data.username);
-            console.log(isAuthenticated);
-            navigate(`/profile?token=${data.data.token}&userid=${data.data.user_id}&username=${data.data.username}`);
+    
+        try {
+            const data = await axios.post(backendPortURL + 'api/login/', form);
+    
+            if (data.error) {
+                setMessage(data.error);
+            } else {
+                setForm({});
+                setMessage("Login successful");
+                toggleLogin(data.data.token, data.data.user_id, data.data.username, () => {
+                    navigate(`/profile?token=${data.data.token}&userid=${data.data.user_id}&username=${data.data.username}`);
+                })
+            }
+        } catch (error) {
+            console.error(error);
+            setMessage("An error occurred during login.");
         }
-    }
+    };
+    
 
     return (
         <div className='flex flex-col justify-center items-center h-screen bg-gradient-to-tl'>
