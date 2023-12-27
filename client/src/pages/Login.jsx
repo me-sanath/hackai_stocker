@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { backendPortURL } from '../constants/constants';
+import { useAuth } from '../authContext';
 
 const Login = () => {
     var [form, setForm] = useState({});
     const navigate = useNavigate();
     var [message, setMessage] = useState("");
+    const { isAuthenticated, toggleLogin } = useAuth();
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -20,12 +22,15 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { data } = await axios.post(backendPortURL + 'api/login/', form);
+        const  data  = await axios.post(backendPortURL + 'api/login/', form);
         if (data.error) {
             setMessage(data.error);
         } else {
             setForm({});
             setMessage("Login successful");
+            console.log(data);
+            toggleLogin(data.data.token, data.data.user_id, data.data.username);
+            console.log(isAuthenticated);
             navigate(`/profile?token=${data.data.token}&userid=${data.data.user_id}&username=${data.data.username}`);
         }
     }
