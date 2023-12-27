@@ -23,18 +23,18 @@ const Signup =  () => {
     event.preventDefault();
     console.log(form);
     try{
-      const {data} = await axios.post(backendPortURL + 'auth/register', form)
-      if(data.error){
-        console.log(data.error);
-        setMessage(data.error);
+      const data = await axios.post(backendPortURL + 'api/register/', form)
+        console.log(data);
+      if(data.data.error){
+        console.log(data.data.error);
+        setMessage(data.data.error);
       } else {
         setForm({});
         console.log('Login Successful');
-        navigate(`/profile?token=${data.token}`);
+        navigate(`/profile?token=${data.data.token}&userid=${data.data.user_id}&username=${data.data.username}`);
       }
     }
     catch(err){
-      setMessage(err);
       console.log(err);
     }
   }

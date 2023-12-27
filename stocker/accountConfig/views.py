@@ -8,27 +8,27 @@ from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .serializers import RegistrationSerializer
 
-
 @api_view(['POST'])
 def register(request):
     data = request.data
+    print(data)
     password = data.get('password')
     email = data.get('email')
-    user_name = data.get('username')
+    user_name = data.get('name')
 
-    try:
-        user = User()
-        user.email = email
-        user.set_password(password)
-        user.is_active = True
-        user.username = user_name
-        user.save()
-    except:
-        return Response({"error": "Email already exists"},status=409 )
+  
+    user = User()
+    user.email = email
+    user.set_password(password)
+    user.is_active = True
+    user.username = user_name
+    user.save()
+
+    
     token = Token.objects.create(user=user)
     return Response({'token': token.key,
                     'user_id': user.id,
-                    'username': user_name},status=status.HTTP_201_CREATED)
+                    'username': user_name}, status=status.HTTP_201_CREATED)
 
 class UserLoginView(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -41,6 +41,6 @@ class UserLoginView(APIView):
 
         if user and user.check_password(password):
             token, created = Token.objects.get_or_create(user=user)
-            return Response({'token': token.key, 'user_id': user.id, 'username':user.username}, status=status.HTTP_200_OK)
+            return Response({'token': token.key, 'user_id': user.id, 'username': user.username}, status=status.HTTP_200_OK)
 
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)

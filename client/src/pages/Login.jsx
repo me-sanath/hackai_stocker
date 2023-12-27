@@ -20,13 +20,13 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { data } = await axios.post(backendPortURL + 'auth/login', form);
+        const { data } = await axios.post(backendPortURL + 'api/login/', form);
         if (data.error) {
             setMessage(data.error);
         } else {
             setForm({});
             setMessage("Login successful");
-            navigate(`/profile?token=${data.token}`);
+            navigate(`/profile?token=${data.data.token}&userid=${data.data.user_id}&username=${data.data.username}`);
         }
     }
 
