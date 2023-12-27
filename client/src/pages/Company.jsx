@@ -10,7 +10,7 @@ const Company = ({ match }) => {
     const { companyName } = useParams();
 
     const [companyData, setCompanyData] = useState(null);
-    // const [isFollowing, setIsFollowing] = useState(false);
+    const [isFollowing, setIsFollowing] = useState(false);
 
     //Handle this please logic of logged in or not?
     const isLoggedIn = true;
@@ -25,7 +25,7 @@ const Company = ({ match }) => {
             const values = Object.keys(data).map(date => ({
                 x: new Date(date),
                 y: parseFloat(data[date]['4. close']),
-              }));
+            }));
 
             setCompanyData(data);
             setStockChartValues(values);
@@ -74,25 +74,26 @@ const Company = ({ match }) => {
     //     setStockChartYValues(closingPrices);
     // }, []);
 
-    // const handleFollowingClick = () => {
-    //     // Implement logic to handle the follow action
-    //     // You may want to update the state or make an API call to update the backend
-    //     setIsFollowing(!isFollowing);
-    // };
+    const handleFollowingClick = () => {
+        // Implement logic to handle the follow action
+        // You may want to update the state or make an API call to update the backend
+        setIsFollowing(!isFollowing);
+    };
 
     return (
         <div>
             <Navbar isLoggedIn={isLoggedIn} />
             <div className='p-8 flex items-center justify-center flex-col'>
-                <h1 className='text-5xl font-semibold'>{companyName}</h1>
-                {/* <button
-                    onClick={handleFollowingClick}
-                    className='text-white cursor-pointer bg-blue-500 py-2 px-4 rounded-full mt-4 flex items-center'
-                >
-                
-                    {isFollowing ? 'Following' : 'Follow'}
-                    <span className='ml-2'>{isFollowing ? '✔' : '+'}</span>
-                </button> */}
+                <div className='flex justify-between w-screen px-60'>
+                    <h1 className='text-5xl font-semibold'>{companyName}</h1>
+                    <button
+                        onClick={handleFollowingClick}
+                        className='text-black cursor-pointer bg-[#ff6beb] py-2 px-4 rounded-full mt-4 flex items-center'
+                    >
+                        <span className='mr-2'>{isFollowing ? '✔' : '+'}</span>
+                        {isFollowing ? 'Following' : 'Follow'}
+                    </button>
+                </div>
                 <div className="container mx-auto my-8 space-y-4">
                     <div className="overflow-x-auto">
                         <table className="min-w-full text-white text-xl font-medium table-auto">
@@ -145,16 +146,16 @@ const Company = ({ match }) => {
                 </div>
                 {/* Display stock details here */}
                 {stockChartValues.length > 0 && (
-          <div className="mt-8" style={{ width: '80vw', height: '400px' }}>
-            <XYPlot xType="time" width={800} height={400}>
-              <VerticalGridLines />
-              <HorizontalGridLines />
-              <XAxis title="Date" />
-              <YAxis title="Closing Prices" />
-              <LineSeries data={stockChartValues} />
-            </XYPlot>
-          </div>
-        )}
+                    <div className="mt-8" style={{ width: '80vw', height: '400px' }}>
+                        <XYPlot xType="time" width={800} height={400}>
+                            <VerticalGridLines />
+                            <HorizontalGridLines />
+                            <XAxis title="Date" />
+                            <YAxis title="Closing Prices" />
+                            <LineSeries data={stockChartValues} />
+                        </XYPlot>
+                    </div>
+                )}
             </div>
         </div>
     );
