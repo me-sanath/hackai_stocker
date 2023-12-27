@@ -29,7 +29,7 @@ const Home = () => {
 
   return (
     <div className='flex flex-col items-center h-screen bg-gray-900 text-white relative p-10'>
-      <div className="flex justify-between w-full mb-4">
+      <div className="flex justify-between w-full mb-40">
         <a href="/" className='text-2xl font-bold cursor-pointer text-[#ff6beb]'>Stocker</a>
         <button
           onClick={handleLoginClick}
@@ -40,7 +40,7 @@ const Home = () => {
       </div>
       
       <div className="flex flex-col items-center space-x-4 flex-grow">
-        <p className="text-lg text-white mb-2">Stalk the stocks</p>
+        <p className="text-lg text-[#ff6beb] mb-2">"Stalk the stocks"</p>
         <Select
           options={companies}
           value={selectedCompany}
