@@ -51,44 +51,44 @@ const Company = ({ match }) => {
                             <tbody  >
                                 <tr className="bg-[#333] rounded-[10px]">
                                     <td className="py-4 px-4 w-1/4">
-                                        Exchange: {companyData?.exchange || 'Loading...'}
+                                        <div className='flex justify-between'><span>Exchange:</span> <span>{companyData?.exchange || 'Loading...'}</span></div>
                                     </td>
                                     <td className="py-4 px-4 w-1/4">
-                                        PE Ratio: {companyData?.peRatio || 'Loading...'}
+                                        <div className='flex justify-between'><span>PE Ratio:</span> <span>{companyData?.pe_ratio || 'Loading...'}</span></div>
                                     </td>
                                     <td className="py-4 px-4 w-1/4">
-                                        Dividend Yield: {companyData?.dividendYield || 'Loading...'}
+                                        <div className='flex justify-between'><span>Dividend Yield:</span> <span>{companyData?.div_yield || 'Loading...'}</span></div>
                                     </td>
                                     <td className="py-4 px-4 w-1/4">
-                                        Market Capitalization: {companyData?.marketCap || 'Loading...'}
+                                        <div className='flex justify-between'><span>Market Capitalization:</span> <span>{companyData?.market_cap || 'Loading...'}</span></div>
                                     </td>
                                 </tr>
                                 <tr className="bg-[#444] rounded-[10px]">
-                                    <td className="py-4 px-4">
-                                        Sector: {companyData?.sector || 'Loading...'}
+                                    <td className="py-4 px-4 w-1/4">
+                                        <div className='flex justify-between'><span>Sector:</span> <span>{companyData?.sector || 'Loading...'}</span></div>
                                     </td>
-                                    <td className="py-4 px-4">
-                                        PB Ratio: {companyData?.pbRatio || 'Loading...'}
+                                    <td className="py-4 px-4 w-1/4">
+                                        <div className='flex justify-between'><span>Profit Margin:</span> <span>{companyData?.profit_margin || 'Loading...'}</span></div>
                                     </td>
-                                    <td className="py-4 px-4">
-                                        52 Week High: {companyData?.weekHigh || 'Loading...'}
+                                    <td className="py-4 px-4 w-1/4">
+                                        <div className='flex justify-between'><span>52 Week High:</span> <span>{companyData?.year_high + companyData?.currency || 'Loading...'}</span></div>
                                     </td>
-                                    <td className="py-4 px-4">
-                                        50 Day Moving Avg: {companyData?.movingAverage50 || 'Loading...'}
+                                    <td className="py-4 px-4 w-1/4">
+                                        <div className='flex justify-between'><span>50 Day Moving Avg:</span> <span>{companyData?.day_moving_average_fifty + companyData?.currency || 'Loading...'}</span></div>
                                     </td>
                                 </tr>
                                 <tr className="bg-[#333] rounded-[10px]">
-                                    <td className="py-4 px-4">
-                                        Country India: {companyData?.country || 'Loading...'}
+                                    <td className="py-4 px-4 w-1/4">
+                                        <div className='flex justify-between'><span>Country:</span> <span>{companyData?.country || 'Loading...'}</span></div>
                                     </td>
-                                    <td className="py-4 px-4">
-                                        PEG Ratio: {companyData?.pegRatio || 'Loading...'}
+                                    <td className="py-4 px-4 w-1/4">
+                                        <div className='flex justify-between'><span>PEG Ratio:</span> <span>{companyData?.peg_ratio || 'Loading...'}</span></div>
                                     </td>
-                                    <td className="py-4 px-4">
-                                        52 Week Low: {companyData?.weekLow || 'Loading...'}
+                                    <td className="py-4 px-4 w-1/4">
+                                        <div className='flex justify-between'><span>52 Week Low:</span> <span>{companyData?.year_low + companyData?.currency || 'Loading...'}</span></div>
                                     </td>
-                                    <td className="py-4 px-4">
-                                        200 Day Moving Avg: {companyData?.movingAverage200 || 'Loading...'}
+                                    <td className="py-4 px-4 w-1/4">
+                                        <div className='flex justify-between'><span>200 Day Moving Avg:</span> <span>{companyData?.day_moving_average_twohundos + companyData?.currency || 'Loading...'}</span></div>
                                     </td>
                                 </tr>
                             </tbody>

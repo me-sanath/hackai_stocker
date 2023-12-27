@@ -1,19 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Select from 'react-select';
-import { companies } from '../constants/constants';
 import { Search } from '@mui/icons-material';
 import { useAuth } from '../authContext';
+import { backendPortURL } from '../constants/constants';
 
 const Home = () => {
     const [selectedCompany, setSelectedCompany] = useState(null);
     const [isTextTyped, setIsTextTyped] = useState(false);
     const navigate = useNavigate();
+    const [companies, setCompanies] = useState([]);
     const { isAuthenticated } = useAuth();
+
+    useEffect(() => {
+        const fetchCompanies = async () => {
+            try {
+                //HAVE TO FILL THIS
+                const response = await fetch(backendPortURL + '/'); 
+                const data = await response.json();
+                setCompanies(data);
+            } catch (error) {
+                console.error('Error fetching companies:', error);
+            }
+        };
+
+        fetchCompanies();
+    }, []);
 
     const handleSearch = () => {
         setIsTextTyped(selectedCompany && selectedCompany.label !== '');
-        navigate(`/${selectedCompany.value}`);
+        navigate(`/${selectedCompany.code}`);
     };
 
     const handleLoginClick = () => {
