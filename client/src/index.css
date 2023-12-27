@@ -13,3 +13,8 @@
   scroll-behavior: smooth;
   color-scheme: dark;
 }
+
+*::selection{
+  background-color: #ff6beb;
+  color: black;
+}
