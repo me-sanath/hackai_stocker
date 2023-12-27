@@ -150,21 +150,14 @@ APIs: Leaflet, OpenStreetMap
 
 ![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/bc280d47-894f-47be-a174-356ac32f85dc)
 
+![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/46594c79-b667-41ec-a808-9ee221c66788")
 
-<img src="https://github.com/me-sanath/hackai_stocker/assets/144726232/46594c79-b667-41ec-a808-9ee221c66788" width="200">
+![image]("https://github.com/me-sanath/hackai_stocker/assets/119714743/39a98f08-e0e4-4c53-a5e5-fdafa13e4396")
 
-<img src="https://github.com/me-sanath/hackai_stocker/assets/119714743/39a98f08-e0e4-4c53-a5e5-fdafa13e4396](https://github.com/satwikkini-01/hack-it-out/assets/144726232/b2d8f231-8f97-4812-9a56-18421679fffc" width="200">
+![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/9f8dd6ec-24f1-4be7-bf94-ddf7b0531b90")
 
-<img src="https://github.com/me-sanath/hackai_stocker/assets/144726232/9f8dd6ec-24f1-4be7-bf94-ddf7b0531b90" width="200">
+![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/0f366953-7c52-4a2e-9f8a-9ef3c468362d")
 
-<img src="https://github.com/me-sanath/hackai_stocker/assets/144726232/9f8dd6ec-24f1-4be7-bf94-ddf7b0531b90](https://github.com/satwikkini-01/hack-it-out/assets/144726232/0cbd4e59-530c-4e40-8b0e-9d13b0c1d5ed)https://github.com/satwikkini-01/hack-it-out/assets/144726232/0cbd4e59-530c-4e40-8b0e-9d13b0c1d5ed" width="200">
+![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/2c0039ca-cdc0-4d7c-8ad9-2039ebd8eafe")
 
-<img src="https://github.com/me-sanath/hackai_stocker/assets/144726232/9f8dd6ec-24f1-4be7-bf94-ddf7b0531b90](https://github.com/satwikkini-01/hack-it-out/assets/144726232/0cbd4e59-530c-4e40-8b0e-9d13b0c1d5ed)https://github.com/satwikkini-01/hack-it-out/assets/144726232/0cbd4e59-530c-4e40-8b0e-9d13b0c1d5ed](https://github.com/satwikkini-01/hack-it-out/assets/144726232/57dae2e4-0bc6-4baf-b5ac-0df1d3d8d79f)https://github.com/satwikkini-01/hack-it-out/assets/144726232/57dae2e4-0bc6-4baf-b5ac-0df1d3d8d79f" width="200">
-
-<img src="https://github.com/me-sanath/hackai_stocker/assets/144726232/0f366953-7c52-4a2e-9f8a-9ef3c468362d" width="200">
-
-<img src="https://github.com/me-sanath/hackai_stocker/assets/144726232/2c0039ca-cdc0-4d7c-8ad9-2039ebd8eafe" width="200">
-
-<img src="[https://github.com/me-sanath/hackai_stocker/assets/144726232/2c0039ca-cdc0-4d7c-8ad9-2039ebd8eafe](https://github.com/satwikkini-01/hack-it-out/assets/144726232/6a2ba012-b49b-4bcb-a90b-af7f619175b0)" width="200">
-
-<img src="https://github.com/me-sanath/hackai_stocker/assets/144726232/2c0039ca-cdc0-4d7c-8ad9-2039ebd8eafe" width="200">
+![image]("https://github.com/me-sanath/hackai_stocker/assets/144726232/2c0039ca-cdc0-4d7c-8ad9-2039ebd8eafe")
