@@ -18,7 +18,7 @@ const App = () => {
           <Route path="/:companyName" element={<Company />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Signup />} />
-          <Route path="/following" element={<FollowingPage />} />
+          <Route path="/profile" element={<FollowingPage />} />
         </Routes>
       </BrowserRouter>
     </>
