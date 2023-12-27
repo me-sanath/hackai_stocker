@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import { backendPortURL } from '../constants/constants';
 
 const Signup =  () => {
 
@@ -29,7 +30,7 @@ const Signup =  () => {
       } else {
         setForm({});
         console.log('Login Successful');
-        navigate(`/hero?token=${data.token}`);
+        navigate(`/profile?token=${data.token}`);
       }
     }
     catch(err){
@@ -43,6 +44,7 @@ const Signup =  () => {
             <div className='bg-[#393939] px-8 py-12 rounded-[15px]'>
                 <h3 className='text-[#ff6beb] text-center text-3xl font-semibold pb-4'>SIGN UP</h3>
                 <form onSubmit={handleSubmit} className='flex flex-col'>
+                    <input type='name' placeholder='Name' name='name' onChange={handleChange} required className='m-2 p-2 bg-[#aaaa] placeholder:text-[#dddddd] rounded-[5px] text-black' />
                     <input type='email' placeholder='Email' name='email' onChange={handleChange} required className='m-2 p-2 bg-[#aaaa] placeholder:text-[#dddddd] rounded-[5px] text-black' />
                     <input type='password' placeholder='Password' name='password' onChange={handleChange} required className='m-2 p-2 bg-[#aaaa] placeholder:text-[#dddddd] rounded-[5px] text-black' />
                     <button type='submit' className='bg-[#ff6beb] text-black m-2 p-2 rounded-[5px] font-medium hover:drop-shadow-[0_7px_7px_rgba(255,100,204,0.6)]' >SUBMIT</button>

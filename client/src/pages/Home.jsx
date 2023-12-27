@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-
-const companies = [
-    { value: 'apple', label: 'Apple Inc.' },
-    { value: 'google', label: 'Google LLC' },
-    // Add more companies to the list
-];
+import { companies } from '../constants/constants';
 
 const Home = () => {
     const [selectedCompany, setSelectedCompany] = useState(null);

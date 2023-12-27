@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import { backendPortURL } from '../constants/constants';
 
 const Login = () => {
     var [form, setForm] = useState({});
@@ -25,7 +26,7 @@ const Login = () => {
         } else {
             setForm({});
             setMessage("Login successful");
-            navigate(`/hero?token=${data.token}`);
+            navigate(`/profile?token=${data.token}`);
         }
     }
 
