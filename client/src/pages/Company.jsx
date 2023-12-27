@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
 const Company = ({match}) => {
-    const { companyName } = match.params;
+    const { companyName } = useParams();
   
     return (
       <div>
