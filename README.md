@@ -148,6 +148,9 @@ APIs: Leaflet, OpenStreetMap
 
 ## Screenshots
 
+![image](https://github.com/me-sanath/hackai_stocker/assets/119714743/bc280d47-894f-47be-a174-356ac32f85dc)
+
+
 <img src="https://github.com/me-sanath/hackai_stocker/assets/144726232/46594c79-b667-41ec-a808-9ee221c66788" width="200">
 
 <img src="https://github.com/me-sanath/hackai_stocker/assets/119714743/39a98f08-e0e4-4c53-a5e5-fdafa13e4396](https://github.com/satwikkini-01/hack-it-out/assets/144726232/b2d8f231-8f97-4812-9a56-18421679fffc" width="200">
