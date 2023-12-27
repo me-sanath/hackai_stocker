@@ -74,14 +74,14 @@ Feel free to reach out to us if you have trouble following the guide. Contact de
 
 ## Running the Server:
 
-1. **Clone the Repository**: Begin by cloning the cli-Mate repository from GitHub to your local machine. This step ensures you have the server's source code.
+1. **Clone the Repository**: Begin by cloning the Stocker repository from GitHub to your local machine. This step ensures you have the server's source code.
     ```bash
-    git clone https://github.com/PranavRao18/Wheel-E.git
+    git clone https://github.com/me-sanath/hackai_stocker
     ```
 
 2. **Change Directory**: Switch to the folder in which we have our app.
    ```bash
-      cd wheele
+      cd client
     ```
     
 3. **Create a Virtual Environment**: It's a good practice to work in a virtual environment to manage dependencies cleanly. Create a virtual environment using your preferred method. For example, you can use Python's `virtualenv` or `venv`.
