@@ -102,4 +102,4 @@ fin = y_predict[y_predict.shape[0]-1] * t2
 
 # print(fin)
 
-model.save('Stock Predictions Model.keras')
+model.save('HackAI_Model.keras')
