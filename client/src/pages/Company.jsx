@@ -85,7 +85,8 @@ const Company = ({ match }) => {
             <Navbar isLoggedIn={isLoggedIn} />
             <div className='p-8 flex items-center justify-center flex-col'>
                 <div className='flex justify-between w-screen px-60'>
-                    <h1 className='text-5xl font-semibold'>{companyName}</h1>
+                    <h1 className='text-5xl font-semibold'>IBM</h1>
+                    <h1 className='text-5xl font-semibold'>163.60 USD</h1>
                     <button
                         onClick={handleFollowingClick}
                         className='text-black cursor-pointer bg-[#ff6beb] py-2 px-4 rounded-full mt-4 flex items-center'
