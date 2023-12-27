@@ -2,9 +2,17 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import yfinance as yf
+from datetime import date, timedelta
+
+today = date.today()
+yesterday = today - timedelta(days=1)
+
+stock = 'AAPL'
+start = '2012-01-01'
+end = yesterday
 
 start = '2012-12-22'
-end = '2023-12-25'
+end = yesterday
 stock = 'AAPL'
 
 data = yf.download(stock, start, end)
