@@ -1,78 +1,86 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Select from 'react-select';
 import { companies } from '../constants/constants';
+import { Search } from '@mui/icons-material';
 
 const Home = () => {
-  const [selectedCompany, setSelectedCompany] = useState(null);
-  const [isTextTyped, setIsTextTyped] = useState(false);
-  const navigate = useNavigate();
+    const [selectedCompany, setSelectedCompany] = useState(null);
+    const [isTextTyped, setIsTextTyped] = useState(false);
+    const navigate = useNavigate();
 
-  const handleSearch = () => {
-    setIsTextTyped(selectedCompany && selectedCompany.label !== '');
-    navigate(`/${selectedCompany.value}`);
-  };
+    const handleSearch = () => {
+        setIsTextTyped(selectedCompany && selectedCompany.label !== '');
+        navigate(`/${selectedCompany.value}`);
+    };
 
-  const handleLoginClick = () => {
-    navigate('/login');
-  };
+    const handleLoginClick = () => {
+        navigate('/login');
+    };
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleSearch();
-    }
-  };
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
+    };
 
-  return (
-    <div className='flex flex-col items-center h-screen bg-gray-900 text-white relative p-10'>
-      <div className="flex justify-between w-full mb-40">
-        <a href="/" className='text-2xl font-bold cursor-pointer text-[#ff6beb]'>Stocker</a>
-        <button
-          onClick={handleLoginClick}
-          className='bg-[#ff6beb] text-white py-3 px-6 rounded transform hover:scale-110 transition-transform'
-        >
-          Login
-        </button>
-      </div>
-      
-      <div className="flex flex-col items-center space-x-4 flex-grow">
-        <p className="text-lg text-[#ff6beb] mb-2">"Stalk the stocks"</p>
-        <Select
-          options={companies}
-          value={selectedCompany}
-          onChange={(selectedOption) => setSelectedCompany(selectedOption)}
-          placeholder="Search for a company"
-          className={`w-96 text-white py-3 px-6 rounded focus:outline-none placeholder:text-white`}
-          styles={{
-            control: (provided) => ({
-              ...provided,
-              backgroundColor: 'transparent',
-              borderColor: 'white',
-              color: '#ffffff',
-              width: '300px', // Adjust the width as needed
-            }),
-            option: (provided, state) => ({
-              ...provided,
-              backgroundColor: state.isSelected ? '#4a5568' : 'white',
-              color: 'black', // Change font color inside menu
-            }),
-            dropdown: (provided) => ({
-              ...provided,
-              zIndex: 9999,
-              marginTop: '10px',
-              maxHeight: '200px', 
-              width: '300px', // Adjust the width as needed
-            }),
-          }}
-          components={{
-            IndicatorSeparator: () => null,
-            DropdownIndicator: () => <i className="material-icons text-white">search</i>,
-          }}
-          onKeyPress={handleKeyPress}
-        />
-      </div>
-    </div>
-  );
+    return (
+        <div className='h-screen bg-black text-white relative'>
+            <nav className="bg-[#000] p-8 w-screen">
+                <div className="container mx-auto flex justify-end items-center">
+                    <Link to="/login" className="text-[#ff6beb]">
+                        <button type='submit'
+                            className='bg-[#ff6beb] text-black m-2 p-2 rounded-[5px] font-semibold text-xl hover:drop-shadow-[0_7px_7px_rgba(255,100,204,0.6)] hover:scale-110'>
+                            LOGIN
+                        </button>
+                    </Link>
+                </div>
+            </nav>
+
+            <div className="h-4/6 flex flex-col items-center justify-center">
+                <h1 className='text-8xl font-bold'>STOCKER</h1>
+                <p className="text-2xl text-[#ff6beb] mb-2">"Stalk the stocks"</p>
+                <div className='flex justify-between'>
+                    <Select
+                        options={companies}
+                        value={selectedCompany}
+                        onChange={(selectedOption) => {
+                            setSelectedCompany(selectedOption).then(() => handleSearch())
+                        }}
+                        placeholder="Search for a company"
+                        className={`w-5/6 sm:w-1/2 text-white py-3 px-6 rounded focus:outline-none placeholder:text-white`}
+                        styles={{
+                            control: (provided) => ({
+                                ...provided,
+                                backgroundColor: 'transparent',
+                                borderColor: 'white',
+                                color: '#ffffff',
+                                width: '20rem', // Adjust the width as needed
+                            }),
+                            option: (provided, state) => ({
+                                ...provided,
+                                backgroundColor: state.isSelected ? '#4a5568' : 'white',
+                                color: 'black', // Change font color inside menu
+                            }),
+                            dropdown: (provided) => ({
+                                ...provided,
+                                zIndex: 9999,
+                                marginTop: '10px',
+                                maxHeight: '200px',
+                                width: '10rem', // Adjust the width as needed
+                            }),
+                        }}
+                        components={{
+                            IndicatorSeparator: () => null,
+                            DropdownIndicator: () => null,
+                        }}
+                        onKeyPress={handleKeyPress}
+                    />
+                    <button onClick={handleSearch} className=''><Search /></button>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default Home;
