@@ -7,7 +7,10 @@ const Company = ({ match }) => {
     const { companyName } = useParams();
 
     const [companyData, setCompanyData] = useState(null);
+    // const [isFollowing, setIsFollowing] = useState(false);
 
+    //Handle this please logic of logged in or not?
+    const isLoggedIn = true;
     const fetchData = async () => {
         try {
             const response = await axios.get('API_ENDPOINT');
@@ -23,11 +26,25 @@ const Company = ({ match }) => {
         fetchData();
     }, []);
 
+    // const handleFollowingClick = () => {
+    //     // Implement logic to handle the follow action
+    //     // You may want to update the state or make an API call to update the backend
+    //     setIsFollowing(!isFollowing);
+    // };
+
     return (
         <div>
-            <Navbar />
+            <Navbar isLoggedIn={isLoggedIn} />
             <div className='p-8 flex items-center justify-center flex-col'>
                 <h1 className='text-5xl font-semibold'>{companyName}</h1>
+                {/* <button
+                    onClick={handleFollowingClick}
+                    className='text-white cursor-pointer bg-blue-500 py-2 px-4 rounded-full mt-4 flex items-center'
+                >
+                
+                    {isFollowing ? 'Following' : 'Follow'}
+                    <span className='ml-2'>{isFollowing ? '✔' : '+'}</span>
+                </button> */}
                 <div className="container mx-auto my-8 space-y-4">
                     <div className="overflow-x-auto">
                         <table className="min-w-full text-white text-xl font-medium table-auto">
