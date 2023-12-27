@@ -4,28 +4,13 @@ import Select from 'react-select';
 import { Search } from '@mui/icons-material';
 import { useAuth } from '../authContext';
 import { backendPortURL } from '../constants/constants';
+import { companies } from '../constants/constants';
 
 const Home = () => {
     const [selectedCompany, setSelectedCompany] = useState(null);
     const [isTextTyped, setIsTextTyped] = useState(false);
     const navigate = useNavigate();
-    const [companies, setCompanies] = useState([]);
     const { isAuthenticated } = useAuth();
-
-    useEffect(() => {
-        const fetchCompanies = async () => {
-            try {
-                //HAVE TO FILL THIS
-                const response = await fetch(backendPortURL + '/'); 
-                const data = await response.json();
-                setCompanies(data);
-            } catch (error) {
-                console.error('Error fetching companies:', error);
-            }
-        };
-
-        fetchCompanies();
-    }, []);
 
     const handleSearch = () => {
         setIsTextTyped(selectedCompany && selectedCompany.label !== '');
