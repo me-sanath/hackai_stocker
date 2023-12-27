@@ -18,3 +18,14 @@
   background-color: #ff6beb;
   color: black;
 }
+
+/* Add this to your CSS or stylesheet */
+.bell-icon {
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.bell-icon:hover {
+  transform: scale(1.1);
+}
