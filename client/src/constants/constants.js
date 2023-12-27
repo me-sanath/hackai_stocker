@@ -4,6 +4,6 @@ const companies = [
     // Add more companies to the list
 ];
 
-let backendPortURL = 'http://localhost:3000/';
+let backendPortURL = 'http://localhost:8000/';
 
 export { companies, backendPortURL };
