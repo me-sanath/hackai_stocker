@@ -1,9 +1,11 @@
 // Navbar.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../authContext';
 
-const Navbar = ({ isLoggedIn }) => {
+const Navbar = () => {
     const navigate = useNavigate();
+    const { isAuthenticated } = useAuth();
 
     const handleLoginClick = () => {
         // Handle login action
@@ -18,9 +20,13 @@ const Navbar = ({ isLoggedIn }) => {
                         Stocker
                     </div>
                 </Link>
-                {isLoggedIn ? (
-                    <Link to="/following" className="text-[#ff6beb]">
-                        Following
+                {isAuthenticated ? (
+                    <Link to="/profile" className="text-[#ff6beb]">
+                        <button
+                            className='bg-[#ff6beb] text-black m-2 p-2 rounded-[5px] font-semibold text-xl hover:drop-shadow-[0_7px_7px_rgba(255,100,204,0.6)] hover:scale-110'
+                        >
+                            FOLLOWING
+                        </button>
                     </Link>
                 ) : (
                     <button
