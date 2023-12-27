@@ -1,17 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Select from 'react-select';
-import { companies } from '../constants/constants';
 import { Search } from '@mui/icons-material';
+import { useAuth } from '../authContext';
+import { backendPortURL } from '../constants/constants';
 
 const Home = () => {
     const [selectedCompany, setSelectedCompany] = useState(null);
     const [isTextTyped, setIsTextTyped] = useState(false);
     const navigate = useNavigate();
+    const [companies, setCompanies] = useState([]);
+    const { isAuthenticated } = useAuth();
+
+    useEffect(() => {
+        const fetchCompanies = async () => {
+            try {
+                //HAVE TO FILL THIS
+                const response = await fetch(backendPortURL + '/'); 
+                const data = await response.json();
+                setCompanies(data);
+            } catch (error) {
+                console.error('Error fetching companies:', error);
+            }
+        };
+
+        fetchCompanies();
+    }, []);
 
     const handleSearch = () => {
         setIsTextTyped(selectedCompany && selectedCompany.label !== '');
-        navigate(`/${selectedCompany.value}`);
+        navigate(`/${selectedCompany.code}`);
     };
 
     const handleLoginClick = () => {
@@ -28,12 +46,25 @@ const Home = () => {
         <div className='h-screen bg-black text-white relative'>
             <nav className="bg-[#000] p-8 w-screen">
                 <div className="container mx-auto flex justify-end items-center">
-                    <Link to="/login" className="text-[#ff6beb]">
-                        <button type='submit'
-                            className='bg-[#ff6beb] text-black m-2 p-2 rounded-[5px] font-semibold text-xl hover:drop-shadow-[0_7px_7px_rgba(255,100,204,0.6)] hover:scale-110'>
+                    {isAuthenticated ? (
+                        <Link to="/profile" className="text-[#ff6beb]">
+                        <button
+                            onClick={handleLoginClick}
+                            className='bg-[#ff6beb] text-black m-2 p-2 rounded-[5px] font-semibold text-xl hover:drop-shadow-[0_7px_7px_rgba(255,100,204,0.6)] hover:scale-110'
+                        >
+                            FOLLOWING
+                        </button>
+                        </Link>
+                    ) : (
+                        <Link to="/login" className="text-[#ff6beb]">
+                        <button
+                            onClick={handleLoginClick}
+                            className='bg-[#ff6beb] text-black m-2 p-2 rounded-[5px] font-semibold text-xl hover:drop-shadow-[0_7px_7px_rgba(255,100,204,0.6)] hover:scale-110'
+                        >
                             LOGIN
                         </button>
-                    </Link>
+                        </Link>
+                    )}
                 </div>
             </nav>
 
@@ -45,16 +76,16 @@ const Home = () => {
                         options={companies}
                         value={selectedCompany}
                         onChange={(selectedOption) => {
-                            setSelectedCompany(selectedOption).then(() => handleSearch())
+                            setSelectedCompany(selectedOption)
                         }}
                         placeholder="Search for a company"
-                        className={`w-5/6 sm:w-1/2 text-white py-3 px-6 rounded focus:outline-none placeholder:text-white`}
+                        className={`w-5/6 sm:w-1/2 !text-white py-3 px-6 rounded focus:outline-none placeholder:text-white`}
                         styles={{
                             control: (provided) => ({
                                 ...provided,
-                                backgroundColor: 'transparent',
+                                backgroundColor: '#eeeeee',
                                 borderColor: 'white',
-                                color: '#ffffff',
+                                color: '!#ffffff',
                                 width: '20rem', // Adjust the width as needed
                             }),
                             option: (provided, state) => ({
