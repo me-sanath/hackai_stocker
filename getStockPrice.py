@@ -13,11 +13,11 @@ def getStockPrice(stock_symbol):
     model = load_model('HackAI_Model.keras')
 
     today = date.today()
-    yesterday = today - timedelta(days=1)
+    # yesterday = today - timedelta(days=1)
 
     stock = stock_symbol
     start = '2012-01-01'
-    end = yesterday
+    end = today
 
     try:
         data = yf.download(stock, start ,end)
@@ -64,16 +64,16 @@ def getStockPrice(stock_symbol):
         # print(fin[0])
 
         if(fin[0] > t):
-            # print("Buy the stock")
-            return "Buy the stock"
+            return "Good time to buy this stock"
+        
         else:
             # print("Dont buy the stock")
-            return "Dont buy the stock"
+            return "Not a good time to buy this stock"
 
 
     except:
-        print("No Stock Found")
-        sys.exit()
+        # print("No Stock Found")
+        return "No Stock Found"
 
 
-# print(getStockPrice('GOOG'))
+# print(getStockPrice('HFCL.NS'))
