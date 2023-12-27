@@ -101,3 +101,5 @@ t2 = t/y_predict[y_predict.shape[0]-2]
 fin = y_predict[y_predict.shape[0]-1] * t2
 
 # print(fin)
+
+model.save('Stock Predictions Model.keras')
